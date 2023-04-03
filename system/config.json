@@ -1,0 +1,21 @@
+{
+    "token": "BOT TOKEN",
+
+    "owner": "YOUR USER ID",
+    "globalLogs": {
+        "guild": "GUILD ID",
+        "channel": "CHANNEL ID"
+    },
+    "servers": [
+        {
+            "guild": "GUILD ID",
+            "executive": "ROLE ID",
+            "coordinator": "ROLE ID"
+        },
+        {
+            "guild": "GUILD ID",
+            "executive": "ROLE ID",
+            "coordinator": "ROLE ID"
+        }
+    ]
+}
