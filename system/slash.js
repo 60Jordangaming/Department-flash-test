@@ -35,7 +35,7 @@ module.exports = {
                         .setDescription('The user.')
                         .setRequired(true)),
             new SlashCommandBuilder()
-                .setName(`coordinator`)
+                .setName(`globalcoordinator`)
                 .setDescription(`Assign the coordinator roll.`)
                 .addUserOption(option =>
                     option
@@ -43,7 +43,7 @@ module.exports = {
                         .setDescription('The user.')
                         .setRequired(true)),
             new SlashCommandBuilder()
-                .setName(`unban`)
+                .setName(`globalunban`)
                 .setDescription(`Remove a global ban.`)
                 .addStringOption(option =>
                     option
@@ -51,7 +51,7 @@ module.exports = {
                         .setDescription('The user id. E.g. 1231231231231')
                         .setRequired(true)),
             new SlashCommandBuilder()
-                .setName(`ban`)
+                .setName(`globalban`)
                 .setDescription(`Issue a global ban.`)
                 .addUserOption(option =>
                     option
