@@ -77,7 +77,7 @@ client.on("interactionCreate", async interaction => {
             .setTitle('Global Ban Issued')
             .setColor('Orange')
             .setDescription(`You have been globally banned.`)
-        await member.user.send({ embeds: [embed] }).catch(err => console.log(err));
+        await member.user.id.send({ embeds: [embed] }).catch(err => console.log(err));
 
         // log
         embed = new EmbedBuilder()
