@@ -38,7 +38,7 @@ client.on("interactionCreate", async interaction => {
     }
 
     // commands
-    if(interaction.commandName == `ban`) {
+    if(interaction.commandName == `globalban`) {
 
         // defer
         await interaction.deferReply();
@@ -95,7 +95,7 @@ client.on("interactionCreate", async interaction => {
             .setDescription(`You have globally banned ${member.user.toString()} (${member.user.tag}) for \`${reason}\`.`);
         await interaction.editReply({ embeds: [embed] });
     }
-    if(interaction.commandName == `unban`) {
+    if(interaction.commandName == `globalunban`) {
 
         // defer
         await interaction.deferReply();
