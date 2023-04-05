@@ -38,7 +38,7 @@ client.on("interactionCreate", async interaction => {
     }
 
     // commands
-    if(interaction.commandName == `globalban`) {
+    if(interaction.commandName == `ban`) {
 
         // defer
         await interaction.deferReply();
@@ -77,7 +77,7 @@ client.on("interactionCreate", async interaction => {
             .setTitle('Global Ban Issued')
             .setColor('Orange')
             .setDescription(`You have been globally banned.`)
-        await member.user.id.send({ embeds: [embed] }).catch(err => console.log(err));
+        await member.user.send({ embeds: [embed] }).catch(err => console.log(err));
 
         // log
         embed = new EmbedBuilder()
@@ -95,7 +95,7 @@ client.on("interactionCreate", async interaction => {
             .setDescription(`You have globally banned ${member.user.toString()} (${member.user.tag}) for \`${reason}\`.`);
         await interaction.editReply({ embeds: [embed] });
     }
-    if(interaction.commandName == `globalunban`) {
+    if(interaction.commandName == `unban`) {
 
         // defer
         await interaction.deferReply();
