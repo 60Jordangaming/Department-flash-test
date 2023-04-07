@@ -200,7 +200,7 @@ client.on("interactionCreate", async interaction => {
         const member = interaction.options._hoistedOptions[0].member;
 
         // valid roles?
-        if(!interaction.member.roles.cache.has(servers.filter(t => t.guild == interaction.guild.id)[0].executive) && !interaction.member.roles.cache.has(servers.filter(t => t.guild == interaction.guild.id)[0].coordinator)) {
+        if(!interaction.member.roles.cache.has(servers.filter(t => t.guild == interaction.guild.id)[0].executive) && !interaction.member.roles.cache.has(servers.filter(t => t.guild == interaction.guild.id)[0].management)) {
             embed = new EmbedBuilder()
                 .setColor('DarkRed')
                 .setTitle('Error')
@@ -212,8 +212,8 @@ client.on("interactionCreate", async interaction => {
         // issue bans
         for(i in fetchedServers) {
             m = (await fetchedServers[i].members.fetch())?.map(t => t)?.filter(t => t.user.id == member.user.id)[0];
-            if(m && !m.roles.cache.has(servers.filter(t => t.guild == fetchedServers[i].id)[0].coordinator)) {
-                await m.roles.add(servers.filter(t => t.guild == fetchedServers[i].id)[0].coordinator).catch(err => console.warn(`Missing permissions to assign roles in ${fetchedServers[i].name}`))
+            if(m && !m.roles.cache.has(servers.filter(t => t.guild == fetchedServers[i].id)[0].management)) {
+                await m.roles.add(servers.filter(t => t.guild == fetchedServers[i].id)[0].management).catch(err => console.warn(`Missing permissions to assign roles in ${fetchedServers[i].name}`))
             } 
         }
 
