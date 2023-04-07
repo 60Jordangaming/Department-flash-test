@@ -18,7 +18,7 @@ client.on("ready", async () => {
     require('./system/slash').run(client);
 
     // log
-    console.log(`--> Bot online`);
+    console.log(`--> Bot is online`);
 
     // fetch all servers
     for(i in servers) {
