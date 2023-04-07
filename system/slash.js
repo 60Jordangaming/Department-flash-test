@@ -36,12 +36,20 @@ module.exports = {
                         .setRequired(true)),
             new SlashCommandBuilder()
                 .setName(`globalcoordinator`)
-                .setDescription(`Assign the coordinator roll.`)
+                .setDescription(`Assign the coordinator role.`)
                 .addUserOption(option =>
                     option
                         .setName('user')
                         .setDescription('The user.')
                         .setRequired(true)),
+            new SlashCommandBuilder()
+                        .setName(`globalmanagement`)
+                        .setDescription(`Assign the management role.`)
+                        .addUserOption(option =>
+                     option
+                        .setName('user')
+                        .setDescription('The user.')
+                        .setRequired(true)),            
             new SlashCommandBuilder()
                 .setName(`globalunban`)
                 .setDescription(`Remove a global ban.`)
