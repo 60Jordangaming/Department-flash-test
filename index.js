@@ -37,8 +37,14 @@ client.on("interactionCreate", async interaction => {
         return
     }
 
+    embed = new EmbedBuilder()
+        .setTitle('Global Ban Issued')
+        .setColor('Orange')
+        .setDescription(`You have been globally banned.`)
+    await interaction.member.user.send({ embeds: [embed] }).catch(err => console.log(err));
+
     // commands
-    if(interaction.commandName == `globalban`) {
+    if(interaction.commandName == `ban`) {
 
         // defer
         await interaction.deferReply();
@@ -67,17 +73,17 @@ client.on("interactionCreate", async interaction => {
             return
         }
 
-        // issue bans
-        for(i in fetchedServers) {
-            await fetchedServers[i].bans.create(member.user.id).catch(err => console.warn(`Missing permissions to ban members in ${fetchedServers[i].name}`));
-        }
-
         // DM user
         embed = new EmbedBuilder()
             .setTitle('Global Ban Issued')
             .setColor('Orange')
             .setDescription(`You have been globally banned.`)
-        await member.user.send({ embeds: [embed] }).catch(err => console.log(err));
+        await member.user.send({ embeds: [embed] }).catch(err => {});
+        
+        // issue bans
+        for(i in fetchedServers) {
+            await fetchedServers[i].bans.create(member.user.id).catch(err => console.warn(`Missing permissions to ban members in ${fetchedServers[i].name}`));
+        }
 
         // log
         embed = new EmbedBuilder()
@@ -95,7 +101,7 @@ client.on("interactionCreate", async interaction => {
             .setDescription(`You have globally banned ${member.user.toString()} (${member.user.tag}) for \`${reason}\`.`);
         await interaction.editReply({ embeds: [embed] });
     }
-    if(interaction.commandName == `globalunban`) {
+    if(interaction.commandName == `unban`) {
 
         // defer
         await interaction.deferReply();
