@@ -77,7 +77,7 @@ client.on("interactionCreate", async interaction => {
         embed = new EmbedBuilder()
             .setTitle('Global Ban Issued')
             .setColor('Orange')
-            .setDescription(`You have been globally banned.`)
+            .setDescription(`You have been globally banned from MISRP Discord and all Departments!`)
         await member.user.send({ embeds: [embed] }).catch(err => {});
         
         // issue bans
