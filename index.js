@@ -254,7 +254,7 @@ client.on("interactionCreate", async interaction => {
         for(i in fetchedServers) {
             m = (await fetchedServers[i].members.fetch())?.map(t => t)?.filter(t => t.user.id == member.user.id)[0];
             if(m && !m.roles.cache.has(servers.filter(t => t.guild == fetchedServers[i].id)[0].management)) {
-                await m.roles.remove(servers.filter(t => t.guild == fetchedServers[i].id)[0].management).catch(err => console.warn(`Missing permissions to assign roles in ${fetchedServers[i].name}`))
+                await member.roles.remove(servers.filter(t => t.guild == fetchedServers[i].id)[0].management).catch(err => console.warn(`Missing permissions to assign roles in ${fetchedServers[i].name}`))
             } 
         }
 
