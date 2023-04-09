@@ -232,6 +232,47 @@ client.on("interactionCreate", async interaction => {
             .setDescription(`You have granted ${member.user.toString()} (${member.user.tag}) the Management role globally.`);
         await interaction.editReply({ embeds: [embed] });
     }
+    if(interaction.commandName == `unglobalmanagement`) {
+
+        // defer
+        await interaction.deferReply();
+
+        // parse
+        const member = interaction.options._hoistedOptions[0].member;
+
+        // valid roles?
+        if(!interaction.member.roles.cache.has(servers.filter(t => t.guild == interaction.guild.id)[0].executive) && !interaction.member.roles.cache.has(servers.filter(t => t.guild == interaction.guild.id)[0].management)) {
+            embed = new EmbedBuilder()
+                .setColor('DarkRed')
+                .setTitle('Error')
+                .setDescription(`Only executives are permitted to use this command.`)
+            await interaction.editReply({ embeds: [embed] });
+            return
+        }
+
+        // issue bans
+        for(i in fetchedServers) {
+            m = (await fetchedServers[i].members.fetch())?.map(t => t)?.filter(t => t.user.id == member.user.id)[0];
+            if(m && !m.roles.cache.has(servers.filter(t => t.guild == fetchedServers[i].id)[0].management)) {
+                await m.roles.remove(servers.filter(t => t.guild == fetchedServers[i].id)[0].management).catch(err => console.warn(`Missing permissions to assign roles in ${fetchedServers[i].name}`))
+            } 
+        }
+
+        // log
+        embed = new EmbedBuilder()
+            .setColor('DarkBlue')
+            .setTitle('Management Role Issued')
+            .setDescription(`${interaction.user.toString()} (${interaction.user.tag}) has Removed ${member.user.toString()} (${member.user.tag}) the Management role globally.`)
+        await (await client.guilds.cache.get(globalLogs.guild).channels.fetch(globalLogs.channel)).send({ embeds: [embed] });
+
+        // reply
+        embed = new EmbedBuilder()
+            .setColor('DarkBlue')
+            .setTitle('Management Role Removed')
+            .setTimestamp()
+            .setDescription(`You have Removed ${member.user.toString()} (${member.user.tag}) the Management role globally.`);
+        await interaction.editReply({ embeds: [embed] });
+    }
     if(interaction.commandName == `block`) {
 
         // defer
