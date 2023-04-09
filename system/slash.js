@@ -49,6 +49,14 @@ module.exports = {
                      option
                         .setName('user')
                         .setDescription('The user.')
+                        .setRequired(true)),
+            new SlashCommandBuilder()
+                .setName(`unglobalmanagement`)
+                .setDescription(`Remove the management role.`)
+                .addUserOption(option =>
+                    option
+                        .setName('user')
+                        .setDescription('The user.')
                         .setRequired(true)),            
             new SlashCommandBuilder()
                 .setName(`globalunban`)
